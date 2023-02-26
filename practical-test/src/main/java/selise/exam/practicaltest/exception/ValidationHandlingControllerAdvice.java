@@ -26,7 +26,7 @@ public class ValidationHandlingControllerAdvice {
                 .map(error -> new ApiValidationError(error.getField(), error.getRejectedValue(), error.getDefaultMessage()))
                 .collect(Collectors.toList());
         return buildResponseEntity(new ApiErrorResponse(HttpStatus.BAD_REQUEST,
-                "error.invalidMethod", errors));
+                "Argument(s) not valid.", errors));
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -36,7 +36,7 @@ public class ValidationHandlingControllerAdvice {
                 .map(error -> new ApiValidationError(error.getPropertyPath().toString(), error.getMessage()))
                 .collect(Collectors.toList());
         return buildResponseEntity(new ApiErrorResponse(HttpStatus.BAD_REQUEST,
-                "error.validation", errors, constraintViolationException));
+                "Constraint violation.", errors, constraintViolationException));
     }
 
     private ResponseEntity<Object> buildResponseEntity(ApiErrorResponse apiError) {

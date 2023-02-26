@@ -3,7 +3,6 @@ package selise.exam.practicaltest.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import selise.exam.practicaltest.entity.Task;
 import selise.exam.practicaltest.entity.User;

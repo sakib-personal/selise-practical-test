@@ -18,13 +18,13 @@ public class BaseControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UniqueConstraintException.class)
     public ResponseEntity<Object> uniqueConstraintException(UniqueConstraintException exception) {
-        return buildResponseEntity(new ApiErrorResponse(HttpStatus.CONFLICT, "error.uniqueValue", exception));
+        return buildResponseEntity(new ApiErrorResponse(HttpStatus.CONFLICT, "Value constraint failed.", exception));
     }
 
     @ExceptionHandler(UnexpectedRollbackException.class)
     public ResponseEntity<Object> unexpectedRollbackExceptionException(UnexpectedRollbackException unexpectedRollbackException) {
         return buildResponseEntity(new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR,
-                "error.unexpectedRollbackException",
+                "Unexpected rollback exception occurred.",
                 unexpectedRollbackException));
     }
 
