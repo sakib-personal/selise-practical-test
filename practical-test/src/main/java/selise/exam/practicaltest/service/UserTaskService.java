@@ -13,6 +13,7 @@ import selise.exam.practicaltest.payload.UserNewTaskCreationResponseDto;
 import selise.exam.practicaltest.repository.TaskRepository;
 import selise.exam.practicaltest.repository.UserRepository;
 import selise.exam.practicaltest.util.Constants;
+import selise.exam.practicaltest.util.DateUtil;
 
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class UserTaskService {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new EntityNotFoundException(Constants.TASK_NOT_EXISTS));
         task.setDescription(userNewTaskCreationRequestDto.getDescription());
-        task.setDueDate(userNewTaskCreationRequestDto.getDueDate());
+        task.setDueDate(DateUtil.convertStringToDateTime(userNewTaskCreationRequestDto.getDueDate()));
         task.setCompleted(userNewTaskCreationRequestDto.isCompleted());
         return UserAssignedTasksResponseDto.fromDomain(taskRepository.save(task));
     }

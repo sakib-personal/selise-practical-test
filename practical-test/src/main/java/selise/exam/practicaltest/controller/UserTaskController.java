@@ -74,11 +74,11 @@ public class UserTaskController {
         }
     }
 
-    @GetMapping
+    @RequestMapping(value = "", params="completed, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE")
     public ResponseEntity<?> getTasksByCompleteStatus(@Valid @NotNull @Min(1) @PathVariable long userId,
-                                                      @Valid @NotNull @RequestParam boolean isCompleted) {
+                                                      @Valid @NotNull @RequestParam boolean completed) {
         return this.responseFactory.successResponse(
-                userTaskService.getTasksByCompleteStatus(isCompleted), HttpStatus.CREATED);
+                userTaskService.getTasksByCompleteStatus(completed), HttpStatus.CREATED);
     }
 
     @DeleteMapping

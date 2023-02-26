@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import selise.exam.practicaltest.entity.User;
+import selise.exam.practicaltest.util.DateUtil;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +21,7 @@ public class UserResponseDto {
     private long id;
     private String username;
     private String email;
-    private LocalDateTime dateOfBirth;
+    private String dateOfBirth;
     private String firstName;
     private String lastName;
 
@@ -29,7 +30,7 @@ public class UserResponseDto {
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .dateOfBirth(user.getDateOfBirth())
+                .dateOfBirth(DateUtil.convertDateToString(user.getDateOfBirth()))
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .build();

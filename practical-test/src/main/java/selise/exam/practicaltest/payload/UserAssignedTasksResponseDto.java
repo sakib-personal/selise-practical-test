@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import selise.exam.practicaltest.entity.Task;
+import selise.exam.practicaltest.util.DateUtil;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 public class UserAssignedTasksResponseDto {
     private long id;
     private String description;
-    private LocalDateTime dueDate;
+    private String dueDate;
     private boolean completed;
     private long userId;
 
@@ -27,7 +28,7 @@ public class UserAssignedTasksResponseDto {
         return UserAssignedTasksResponseDto.builder()
                 .id(task.getId())
                 .description(task.getDescription())
-                .dueDate(task.getDueDate())
+                .dueDate(DateUtil.convertDateToString(task.getDueDate()))
                 .completed(task.isCompleted())
                 .userId(task.getUser().getId())
                 .build();
